@@ -5,7 +5,6 @@ import { About } from "../components/sections/About";
 import { Marquee } from "../components/sections/Marquee";
 import { Toolkit } from "../components/sections/Toolkit";
 import { Journey } from "../components/sections/Journey";
-import { SectionHeader } from "../components/ui/SectionHeader";
 import { Footer } from "../components/layout/Footer";
 import { DecorativeLines } from "../components/ui/DecorativeLines";
 
@@ -17,7 +16,7 @@ export function Home() {
       </div>
       <DecorativeLines />
       <div id="crafted">
-        <Crafted limit={4} />
+        <Crafted limit={5} />
       </div>
       <div id="posters">
         <Posters limit={6} />
@@ -32,15 +31,11 @@ export function Home() {
         curveAmount={200}
         direction="right"
         interactive
-        className="custom-text-style cursor-default"
+        className="custom-text-style cursor-default w-screen md:text-6xl text-[100px]"
       />
 
       <Toolkit />
       <div id="journey" className="relative">
-        <SectionHeader
-          title="My Journey"
-          className="px-2 md:px-12 -mb-7 relative z-50"
-        />
         <Journey />
       </div>
       <Footer />

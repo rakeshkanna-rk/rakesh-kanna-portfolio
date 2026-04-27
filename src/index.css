@@ -47,7 +47,7 @@
 
   --color-accent: #5513B9;
   --color-accent-dark: #6b21a8;
-  --color-bg: #050505;
+  --color-bg: #000000;
 
   @keyframes ticker {
     0% { transform: translateX(0); }
@@ -59,6 +59,14 @@
   .leading-trim-both {
     leading-trim: both;
     text-edge: cap;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
   }
 }
 

@@ -4,6 +4,7 @@ import { Briefcase } from "lucide-react";
 import { fadeInUp } from "../../constants/animations";
 import { SectionHeader } from "../ui/SectionHeader";
 import { TextReveal } from "../ui/TextReveal";
+import { LightPillar } from "../ui/LightPillar";
 
 const experiences = [
   {
@@ -60,140 +61,167 @@ export function Journey() {
     offset: ["start start", "end end"],
   });
 
-  // Shift the timeline content up as we scroll through the track
-  // For 2 items, -40% to -50% keeps them well-positioned as they pass
-  const contentY = useTransform(scrollYProgress, [0, 1], ["20%", "-50%"]);
-  
+  const contentY = useTransform(scrollYProgress, [0, 1], ["10%", "-80%"]);
+
   // Progress line grows as we scroll through the track
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-
   return (
     <div ref={containerRef} className="relative h-[250vh]">
       {/* Sticky Fullscreen Container */}
-      <div className="sticky top-0 h-screen w-full overflow-visible px-2 md:px-12 flex-col">
-        {/* Background Layer with opacity */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60 pointer-events-none" 
-          style={{
-            backgroundImage: `linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.1) 17.79%, rgba(0, 0, 0, 0) 50.48%, rgba(0, 0, 0, 0.1) 80.77%, #000000 100%), url('/my-journey.webp')`
-          }}
+      <div className="sticky top-0 h-screen w-full overflow-hidden">
+        {/* LightPillar — truly full-screen, outside any padding */}
+        <div
+          className="absolute inset-0 pointer-events-none z-0 "
           aria-hidden="true"
-        />
+        >
+          <LightPillar
+            topColor="#5227FF"
+            bottomColor="#FF9FFC"
+            intensity={1.1}
+            rotationSpeed={0.9}
+            glowAmount={0.004}
+            pillarWidth={10}
+            pillarHeight={1.6}
+            noiseIntensity={0.8}
+            pillarRotation={68}
+            interactive={false}
+            mixBlendMode="normal"
+            quality="high"
+          />
+          {/* Top / bottom soft fades — Figma spec */}
+          <div
+            className="absolute inset-x-0 top-0 h-50 z-10"
+            style={{
+              background:
+                "linear-gradient(180deg, #000000 13.37%, rgba(0, 0, 0, 0) 100%)",
+            }}
+          />
+          <div
+            className="absolute inset-x-0 bottom-0 h-50 z-10"
+            style={{
+              background:
+                "linear-gradient(0deg, #000000 13.37%, rgba(0, 0, 0, 0) 100%)",
+            }}
+          />
+        </div>
 
-        <div className="max-w-5xl relative z-10 mx-auto w-full grow overflow-visible flex items-center">
-          {/* Viewport for items - items translate within this container */}
-          <div className="relative w-full h-[70vh] pl-10 sm:pl-[60px]">
-            <motion.div style={{ y: contentY }} className="relative">
-              {/* Static Timeline Base */}
-              <div className="absolute left-[-26px] sm:left-[-30px] top-0 bottom-0 w-[4px] bg-white/10 rounded-full" />
+        {/* Scrollable content — padded independently */}
+        <div className="relative z-10 h-full w-full flex flex-col px-4 md:px-12">
+          <div className="max-w-5xl mx-auto w-full grow flex items-start pt-16 md:pt-20 overflow-hidden">
+            {/* Viewport for items - items translate within this container */}
+            <div className="relative w-full h-[65vh] pl-10 sm:pl-[60px]">
+              <motion.div style={{ y: contentY }} className="relative">
+                {/* Title scrolls WITH the cards */}
+                <div className="mb-10 ml-[-10px] sm:ml-[-14px]">
+                  <SectionHeader title="My Journey" />
+                </div>
 
-              {/* Animated Progress Line */}
-              <motion.div
-                className="absolute left-[-26px] sm:left-[-30px] top-0 w-[4px] rounded-full z-20"
-                style={{
-                  height: lineHeight,
-                  background:
-                    "linear-gradient(to bottom, #00ffff 0%, #6366f1 50%, #ff00ff 100%)",
-                  boxShadow: "0 0 20px rgba(0,255,255,0.7)",
-                }}
-              />
+                {/* Static Timeline Base */}
+                <div className="absolute left-[-26px] sm:left-[-30px] top-[120px] bottom-0 w-[4px] bg-white/10 rounded-full" />
 
-              <div className="space-y-32 pb-20">
-                {experiences.map((exp, index) => (
-                  <div key={index} className="relative">
-                    {/* Circle Marker */}
-                    <motion.div
-                      className="absolute left-[-33px] sm:left-[-38px] top-12 w-[18px] h-[18px] rounded-full bg-[#111] border-2 border-white z-30 flex items-center justify-center transition-all duration-500"
-                      whileInView={{
-                        backgroundColor: "#00ffff",
-                        borderColor: "#00ffff",
-                        boxShadow: "0 0 20px #00ffff",
-                        scale: 1.2,
-                      }}
-                      transition={{ duration: 0.5 }}
-                      viewport={{ once: false, amount: 0.8 }}
-                    />
+                {/* Animated Progress Line */}
+                <motion.div
+                  className="absolute left-[-26px] sm:left-[-30px] top-[120px] w-[4px] rounded-full z-20"
+                  style={{
+                    height: lineHeight,
+                    background:
+                      "linear-gradient(to bottom, #00ffff 0%, #6366f1 50%, #ff00ff 100%)",
+                    boxShadow: "0 0 20px rgba(0,255,255,0.7)",
+                  }}
+                />
 
-                    {/* Replace ONLY your card block inside map() with this improved version */}
-                    <motion.div {...fadeInUp} className="relative group w-full">
-                      {/* OUTER BORDER SHAPE WITH CUT CORNER */}
-                      <div
-                        className="relative p-[4px]"
-                        style={{
-                          clipPath:
-                            "polygon(0 0,100% 0,100% calc(100% - 56px),calc(100% - 56px) 100%,0 100%)",
-                          borderRadius: "24px",
-                          background:
-                            "linear-gradient(90deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8))",
+                <div className="space-y-32 pb-20">
+                  {experiences.map((exp, index) => (
+                    <div key={index} className="relative">
+                      {/* Circle Marker */}
+                      <motion.div
+                        className="absolute left-[-33px] sm:left-[-38px] top-10 w-[18px] h-[18px] rounded-full bg-[#111] border-2 border-white z-30"
+                        whileInView={{
+                          backgroundColor: "#00ffff",
+                          borderColor: "#00ffff",
+                          boxShadow: "0 0 20px #00ffff",
+                          scale: 1.2,
                         }}
-                      >
-                        {/* INNER CARD */}
+                        transition={{ duration: 0.5 }}
+                        viewport={{ once: false, amount: 0.8 }}
+                      />
+
+                      {/* CARD */}
+                      <motion.div {...fadeInUp} className="group w-full">
                         <div
-                          className="relative bg-[#040007]"
+                          className="relative rounded-3xl overflow-hidden border border-white/10 backdrop-blur-2xl"
                           style={{
-                            clipPath:
-                              "polygon(0 0,100% 0,100% calc(100% - 56px),calc(100% - 56px) 100%,0 100%)",
-                            borderRadius: "22px",
+                            background:
+                              "linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%)",
+                            boxShadow:
+                              "0 0 0 1px rgba(255,255,255,0.06), 0 20px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)",
                           }}
                         >
-                          {/* Top left purple glow */}
-                          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(110,0,255,0.20),transparent_42%)] pointer-events-none" />
+                          {/* Top accent bar */}
+                          <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-accent/60 to-transparent" />
 
-                          {/* Inner soft border */}
-                          <div className="absolute inset-px border border-white/10 pointer-events-none [clip-path:polygon(0_0,100%_0,100%_calc(100%-56px),calc(100%-56px)_100%,0_100%)]" />
+                          {/* Purple glow top-left */}
+                          <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_0%,rgba(82,39,255,0.18),transparent_55%)] pointer-events-none" />
+                          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-[radial-gradient(circle_at_80%_100%,rgba(155,92,246,0.12),transparent_50%)] pointer-events-none" />
 
-                          {/* CONTENT */}
-                          <div className="relative z-10 px-5 py-6 md:px-10 md:py-9">
-                            <div className="flex flex-col gap-5 md:gap-7">
-                              {/* Header */}
-                              <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-5">
-                                  <div className="hidden md:flex w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-white/5 border border-white/10 items-center justify-center shrink-0 overflow-hidden">
-                                    <ExperienceIcon src={exp.icon} />
-                                  </div>
-
-                                <div className="flex-1">
-                                  <h4 className="hidden md:block text-white text-xl md:text-[30px] leading-tight md:leading-none font-advercase">
-                                    <TextReveal text={exp.role} />
-                                  </h4>
-
-                                  <p className="hidden md:block text-white/85 text-base md:text-[20px] mt-2 md:mt-3 font-medium">
-                                    <TextReveal text={`${exp.company} • ${exp.type}`} delay={0.2} />
-                                  </p>
-                                </div>
+                          {/* Content */}
+                          <div className="relative z-10 p-6 md:p-8">
+                            {/* Header row */}
+                            <div className="flex md:items-center gap-4 mb-5 md:flex-row flex-col ">
+                              {/* Company logo */}
+                              <div className="w-12 h-12 rounded-xl bg-white/8 border border-white/10 flex items-center justify-center shrink-0 overflow-hidden backdrop-blur-sm">
+                                <ExperienceIcon src={exp.icon} />
                               </div>
 
-                              {/* Description */}
-                              <p className="text-white/75 text-base md:text-[20px] leading-relaxed max-w-[96%]">
-                                <TextReveal text={exp.description.join(" ")} delay={0.4} stagger={0.01} />
-                              </p>
-
-                              {/* Footer */}
-                              <div className="flex flex-wrap gap-x-6 md:gap-x-10 gap-y-3 text-white/65 text-sm md:text-lg">
-                                <div className="flex items-center gap-3">
-                                  <span>🗓️</span>
-                                  <TextReveal text={exp.period} delay={0.6} />
-                                </div>
-
-                                <div className="flex items-center gap-3">
-                                  <span>📍</span>
-                                  <TextReveal text={`${exp.location} • ${exp.workType}`} delay={0.7} />
+                              <div className="flex-1 min-w-0">
+                                {/* Role */}
+                                <h4 className="text-white text-lg md:text-2xl font-advercase leading-tight mb-1">
+                                  {exp.role}
+                                </h4>
+                                {/* Company + type badge */}
+                                <div className="mt-3 flex items-center gap-2 flex-wrap">
+                                  <span className="text-white/60 text-sm md:text-base font-medium">
+                                    {exp.company}
+                                  </span>
+                                  <span className="px-2 py-1 rounded-full bg-accent font-bold border border-white/20 text-white/80 text-[11px] tracking-widest uppercase">
+                                    {exp.type}
+                                  </span>
                                 </div>
                               </div>
                             </div>
-                          </div>
 
-                          {/* Hover glow */}
-                          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-linear-to-tr from-cyan-400/5 via-purple-500/5 to-transparent" />
+                            {/* Divider */}
+                            <div className="h-px bg-linear-to-r from-white/10 via-white/5 to-transparent mb-5" />
+
+                            {/* Description */}
+                            <p className="text-white/65 text-sm md:text-base leading-relaxed mb-6 whitespace-pre-line">
+                              {exp.description.join(" ")}
+                            </p>
+
+                            {/* Footer pills */}
+                            <div className="flex flex-wrap gap-2">
+                              <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/8 text-white/80 text-xs font-roboto">
+                                <span>🗓️</span>
+                                {exp.period}
+                              </span>
+                              <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/8 text-white/80 text-xs font-roboto">
+                                <span>📍</span>
+                                {`${exp.location} • ${exp.workType}`}
+                              </span>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </motion.div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+                      </motion.div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
+        {/* end content wrapper */}
       </div>
+      {/* end sticky */}
     </div>
   );
 }

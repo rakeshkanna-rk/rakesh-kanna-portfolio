@@ -8,13 +8,13 @@ const projects = [
     id: 1,
     title: "G-TECH",
     image: "/images/image1.png",
-    url: "https://generalizedtechnology.com"
+    url: "http://generalizedtechnology.vercel.app/"
   },
   {
     id: 2,
-    title: "MERGEX",
+    title: "MONISHWAR",
     image: "/images/image2.png",
-    url: "https://mergex.com"
+    url: "https://monishwar.vercel.app/"
   },
   {
     id: 3,
@@ -24,6 +24,12 @@ const projects = [
   },
   {
     id: 4,
+    title: "MONISHWAR",
+    image: "/images/image1.png",
+    url: "https://monishwar.com"
+  },
+  {
+    id: 5,
     title: "MONISHWAR",
     image: "/images/image1.png",
     url: "https://monishwar.com"
@@ -81,27 +87,32 @@ export function Crafted({ isWorkPage = false, limit }: CraftedProps) {
       ref={targetRef} 
       className={`relative mt-24 ${isWorkPage ? 'h-auto pb-20' : (isMobile ? 'h-auto pb-20' : 'h-[600vh]')}`}
     >
-      <div className={`${isWorkPage || isMobile ? 'relative' : 'sticky top-0 h-screen flex flex-col justify-center'} p-[10px] md:p-[30px] pt-12 md:pt-0`}>
+      <div className={`${isWorkPage || isMobile ? 'relative' : 'sticky top-0 h-screen flex flex-col justify-center'} p-0 md:p-[30px] pt-12 md:pt-0`}>
         <div className="w-full max-w-7xl mx-auto">
-          <SectionHeader title="Websites & UI UX" className="mb-8 md:mb-12 px-4 md:px-0" />
+          <SectionHeader title="Websites & UI UX" className="mb-8 md:mb-12 px-6 md:px-0" />
           
           <motion.div 
             style={{ x: isWorkPage || isMobile ? 0 : x }} 
-            className={isWorkPage ? 'grid grid-cols-1 md:grid-cols-2 gap-8 px-4 md:px-0' : `flex ${isMobile ? 'flex-col items-center gap-10 overflow-visible' : 'gap-12 items-center'}`}
+            className={isWorkPage 
+              ? 'grid grid-cols-1 md:grid-cols-2 gap-8 px-4 md:px-0' 
+              : `flex ${isMobile 
+                  ? 'flex-col gap-12 px-1 pb-20' 
+                  : 'gap-12 items-center'
+                }`}
           >
             {displayedProjects.map((project, index) => (
               <motion.div 
                 key={project.id}
-                initial={isWorkPage ? { opacity: 0, y: 50, scale: 0.95 } : {}}
-                whileInView={isWorkPage ? { opacity: 1, y: 0, scale: 1 } : {}}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1], delay: isWorkPage ? index * 0.1 : 0 }}
+                initial={isWorkPage ? { opacity: 0, y: 50, scale: 0.95 } : { opacity: 0.8, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: false, amount: 0.5 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 onMouseMove={isMobile ? undefined : handleMouseMove}
                 onMouseEnter={() => !isMobile && setHoveredId(project.id)}
                 onMouseLeave={() => !isMobile && setHoveredId(null)}
                 onClick={() => window.open(project.url, '_blank')}
                 whileHover={isMobile ? { scale: 1.02 } : { scale: 1.05 }}
-                className={`group relative h-auto ${isWorkPage ? 'w-full cursor-none' : (isMobile ? 'w-full px-4' : 'w-[70vw] shrink-0 cursor-none')} overflow-hidden rounded-[20px] md:rounded-[30px] transition-all duration-300 hover:shadow-[0_0_50px_#33007E]`}
+                className={`group relative h-auto ${isWorkPage ? 'w-full cursor-none' : (isMobile ? 'w-[98vw] sticky top-[15vh] cursor-pointer' : 'w-[70vw] shrink-0 cursor-none')} overflow-hidden rounded-[20px] md:rounded-[30px] transition-all duration-300 hover:shadow-[0_0_50px_#33007E]`}
               >
                 <div className="border border-white/80 rounded-[20px] md:rounded-[30px] overflow-hidden">
                   {/* Per-Project Cursor - Only for Desktop */}
@@ -134,8 +145,8 @@ export function Crafted({ isWorkPage = false, limit }: CraftedProps) {
             
             {/* CTA Card - Only show in Home */}
             {!isWorkPage && (
-              <div className={`h-[40vh] md:h-[60vh] ${isMobile ? 'w-full max-w-[95vw]' : 'w-[400px] shrink-0'} border border-dashed border-white/20 rounded-[40px] flex flex-col items-center justify-center text-center p-8`}>
-                 <h4 className="text-2xl md:text-3xl font-agraham text-white/40 mb-6 italic">Ready for the next forge?</h4>
+              <div className={`h-[30vh] md:h-[60vh] ${isMobile ? 'w-full sticky top-[20vh]' : 'w-[400px] shrink-0'} border border-dashed border-white/20 rounded-[40px] flex flex-col items-center justify-center text-center p-8 bg-bg/80 backdrop-blur-sm`}>
+                 <h4 className="text-xl md:text-3xl font-agraham text-white/40 mb-6 italic">Ready for the next forge?</h4>
               </div>
             )}
           </motion.div>
@@ -143,7 +154,8 @@ export function Crafted({ isWorkPage = false, limit }: CraftedProps) {
           {!isWorkPage && (
             <motion.button 
               whileHover={{ x: 10 }}
-              className="flex items-start justify-start gap-2 text-xl font-pearl text-white/70 hover:text-white mt-8 md:mt-12 px-[30px] md:px-[10px] w-fit leading-normal"
+              onClick={() => window.location.href = "/work"}
+              className="cursor-pointer flex items-start justify-start gap-2 text-xl font-pearl text-white/70 hover:text-white mt-8 md:mt-12 px-[30px] md:px-[10px] w-fit leading-normal"
             >
               View my forge <img src="/icons/arrow-right.svg" className="w-auto h-6" alt="arrow"/>
             </motion.button>

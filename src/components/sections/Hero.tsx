@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from 'motion/react';
+import { motion, scale, useScroll, useTransform } from 'motion/react';
 import { useRef } from 'react';
 
 export function Hero() {
@@ -18,7 +18,7 @@ export function Hero() {
     <section 
       ref={sectionRef}
       id="hero" 
-      className="relative h-screen flex flex-col items-center justify-center overflow-hidden bg-black"
+      className="relative h-[80vh] md:h-screen flex flex-col items-center justify-center overflow-hidden bg-black"
     >
       {/* Background Image for glow effects - Centered */}
       <motion.div 
