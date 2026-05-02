@@ -2,39 +2,8 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'motion/react';
 import { ArrowRight, ExternalLink } from 'lucide-react';
 import { SectionHeader } from '../ui/SectionHeader';
-
-const projects = [
-  {
-    id: 1,
-    title: "G-TECH",
-    image: "/images/image1.png",
-    url: "http://generalizedtechnology.vercel.app/"
-  },
-  {
-    id: 2,
-    title: "MONISHWAR",
-    image: "/images/image2.png",
-    url: "https://monishwar.vercel.app/"
-  },
-  {
-    id: 3,
-    title: "MONISHWAR",
-    image: "/images/image3.png",
-    url: "https://monishwar.com"
-  },
-  {
-    id: 4,
-    title: "MONISHWAR",
-    image: "/images/image1.png",
-    url: "https://monishwar.com"
-  },
-  {
-    id: 5,
-    title: "MONISHWAR",
-    image: "/images/image1.png",
-    url: "https://monishwar.com"
-  }
-];
+import { useNavigate } from 'react-router-dom';
+import { projects } from '../../data/work';
 
 interface CraftedProps {
   isWorkPage?: boolean;
@@ -43,8 +12,9 @@ interface CraftedProps {
 
 export function Crafted({ isWorkPage = false, limit }: CraftedProps) {
   const targetRef = useRef<HTMLDivElement>(null);
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [windowWidth, setWindowWidth] = useState(0);
+  const navigate = useNavigate();
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -110,7 +80,7 @@ export function Crafted({ isWorkPage = false, limit }: CraftedProps) {
                 onMouseMove={isMobile ? undefined : handleMouseMove}
                 onMouseEnter={() => !isMobile && setHoveredId(project.id)}
                 onMouseLeave={() => !isMobile && setHoveredId(null)}
-                onClick={() => window.open(project.url, '_blank')}
+                onClick={() => navigate(`/work/view-project/${project.id}`)}
                 whileHover={isMobile ? { scale: 1.02 } : { scale: 1.05 }}
                 className={`group relative h-auto ${isWorkPage ? 'w-full cursor-none' : (isMobile ? 'w-[98vw] sticky top-[15vh] cursor-pointer' : 'w-[70vw] shrink-0 cursor-none')} overflow-hidden rounded-[20px] md:rounded-[30px] transition-all duration-300 hover:shadow-[0_0_50px_#33007E]`}
               >
@@ -131,10 +101,18 @@ export function Crafted({ isWorkPage = false, limit }: CraftedProps) {
                     </motion.div>
                   )}
                   
+                  {/* Mobile Image */}
                   <img 
-                    src={project.image} 
+                    src={`https://raw.githubusercontent.com/rakeshkanna-rk/database/refs/heads/main/new_portfolio/${project.image.replace(/\.(\w+)$/, '_mobi.$1').replace(/^\//, '')}`} 
                     alt={project.title}
-                    className="relative h-auto w-full object-contain"
+                    className="relative h-auto w-full object-contain block md:hidden"
+                    referrerPolicy="no-referrer"
+                  />
+                  {/* Desktop Image */}
+                  <img 
+                    src={`https://raw.githubusercontent.com/rakeshkanna-rk/database/refs/heads/main/new_portfolio/${project.image.replace(/^\//, '')}`} 
+                    alt={project.title}
+                    className="relative h-auto w-full object-contain hidden md:block"
                     referrerPolicy="no-referrer"
                   />
                   

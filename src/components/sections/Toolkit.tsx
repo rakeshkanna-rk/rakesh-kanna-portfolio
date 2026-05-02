@@ -2,40 +2,8 @@ import React from "react";
 import { motion } from "motion/react";
 import { SectionHeader } from "../ui/SectionHeader";
 import { DotGrid } from "../ui/DotGrid";
-import {TextReveal} from "../ui/TextReveal";
-
-
-/* ─── Tool data ─────────────────────────────────────────── */
-const tools = [
-  { name: "Figma",      img: "/icons/tools/figma.svg" },
-  { name: "Framer",     img: "/icons/tools/framer.svg" },
-  { name: "Photoshop",  img: "/icons/tools/photoshop.svg" },
-  { name: "Illustrator",img: "/icons/tools/illustrator.svg" },
-  { name: "After FX",   img: "/icons/tools/aftereffects.svg" },
-  { name: "Notion",     img: "/icons/tools/notion.svg" },
-  { name: "VS Code",    img: "/icons/tools/vscode.svg" },
-  { name: "React",      img: "/icons/tools/react.svg" },
-  { name: "Tailwind",   img: "/icons/tools/tailwind.svg" },
-  { name: "Node.js",    img: "/icons/tools/nodejs.svg" },
-  { name: "Python",     img: "/icons/tools/python.svg" },
-  { name: "Git",        img: "/icons/tools/git.svg" },
-];
-
-/* ─── Skills data ────────────────────────────────────────── */
-const skills = [
-  {
-    category: "Design",
-    items: ["UI/UX Design", "Brand Identity", "Motion & Animation", "Design Systems", "Prototyping", "Visual Direction", "Typography"],
-  },
-  {
-    category: "Development",
-    items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js", "Python", "REST APIs"],
-  },
-  {
-    category: "Process",
-    items: ["Creative Direction", "User Research", "Product Strategy", "Design Thinking", "Team Collaboration", "Wireframing"],
-  },
-];
+import { TextReveal } from "../ui/TextReveal";
+import { tools, skills } from "../../data/toolkit";
 
 /* ─── Component ──────────────────────────────────────────── */
 export function Toolkit() {
@@ -117,7 +85,7 @@ export function Toolkit() {
                 className="backdrop-blur-xs w-14 h-14 md:w-16 md:h-16 bg-white/5 border border-white/10 group-hover:border-accent/40 rounded-2xl flex items-center justify-center p-3 transition-colors duration-300"
               >
                 <img
-                  src={tool.img}
+                  src={tool.img.startsWith("http") ? tool.img : `https://raw.githubusercontent.com/rakeshkanna-rk/database/refs/heads/main/new_portfolio/${tool.img.replace(/^\//, '')}`}
                   alt={tool.name}
                   className="w-full h-full object-contain"
                   onError={(e) => {

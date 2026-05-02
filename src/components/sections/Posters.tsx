@@ -1,46 +1,9 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { SectionHeader } from '../ui/SectionHeader';
-import {TextReveal} from '../ui/TextReveal';
-
-const posters = [
-  {
-    id: 1,
-    title: "VIBRANCE",
-    image: "/images/image1.png",
-    category: "POSTER DESIGN"
-  },
-  {
-    id: 2,
-    title: "NEON NIGHTS",
-    image: "/images/image2.png",
-    category: "DIGITAL ART"
-  },
-  {
-    id: 3,
-    title: "MINIMALISM",
-    image: "/images/image3.png",
-    category: "BRANDING"
-  },
-  {
-    id: 4,
-    title: "CONCRETE",
-    image: "/images/image2.png",
-    category: "POSTER DESIGN"
-  },
-  {
-    id: 5,
-    title: "FUTURISM",
-    image: "/images/image3.png",
-    category: "EXPERIMENTAL"
-  },
-  {
-    id: 6,
-    title: "RETRO GRADE",
-    image: "/images/image1.png",
-    category: "POSTER DESIGN"
-  }
-];
+import { TextReveal } from '../ui/TextReveal';
+import { useNavigate } from 'react-router-dom';
+import { posters } from '../../data/work';
 
 interface PostersProps {
   isWorkPage?: boolean;
@@ -49,6 +12,7 @@ interface PostersProps {
 
 export function Posters({ isWorkPage = false, limit }: PostersProps) {
   const displayedPosters = limit ? posters.slice(0, limit) : posters;
+  const navigate = useNavigate();
 
   return (
     <section className="py-20 md:py-32 px-3 md:px-20 bg-bg relative z-10 overflow-hidden">
@@ -67,6 +31,7 @@ export function Posters({ isWorkPage = false, limit }: PostersProps) {
               delay: index * 0.1
             }}
             whileHover={{ y: -10 }}
+            onClick={() => navigate(`/work/view-project/${poster.id}`)}
             className="group relative cursor-pointer"
           >
             <motion.div 

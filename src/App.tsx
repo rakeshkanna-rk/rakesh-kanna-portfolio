@@ -12,6 +12,7 @@ import { Home } from "./pages/Home";
 import { Work } from "./pages/Work";
 import { Blog } from "./pages/Blog";
 import { Links } from "./pages/Links";
+import { ProjectView } from "./pages/ProjectView";
 
 function ScrollToHash() {
   const { pathname, hash } = useLocation();
@@ -57,6 +58,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/work" element={<Work />} />
+          <Route path="/work/view-project/:id" element={<ProjectView />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/links" element={<Links />} />
         </Routes>

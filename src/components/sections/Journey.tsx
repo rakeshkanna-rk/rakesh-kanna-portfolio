@@ -5,35 +5,7 @@ import { fadeInUp } from "../../constants/animations";
 import { SectionHeader } from "../ui/SectionHeader";
 import { TextReveal } from "../ui/TextReveal";
 import { LightPillar } from "../ui/LightPillar";
-
-const experiences = [
-  {
-    role: "Graphics Designer & Web Designer",
-    company: "Runverve",
-    type: "Internship",
-    description: [
-      "Designed pitch decks, standees, print materials, and responsive websites using Wix for a sports-tech startup incubated at IITM.",
-      "Supported branding and marketing efforts through creative visual assets.",
-    ],
-    period: "Feb 2025 – Jun 2025",
-    location: "Tamil Nadu, India",
-    workType: "Remote",
-    icon: "https://api.indieground.net/v1/assets/logo.png",
-  },
-  {
-    role: "Head of Design and Experience",
-    company: "MergeX",
-    type: "Full Time",
-    description: [
-      "Designed pitch decks, standees, print materials, and responsive websites using Wix for a sports-tech startup incubated at IITM.",
-      "Supported branding and marketing efforts through creative visual assets.",
-    ],
-    period: "Feb 2025 – Jun 2025",
-    location: "Tamil Nadu, India",
-    workType: "Remote",
-    icon: "/mergex_logo.svg",
-  },
-];
+import { experiences } from "../../data/about";
 
 function ExperienceIcon({ src }: { src: string }) {
   const [error, setError] = useState(false);
@@ -42,11 +14,15 @@ function ExperienceIcon({ src }: { src: string }) {
     return <Briefcase className="w-6 h-6 md:w-8 md:h-8 text-white/20" />;
   }
 
+  const fullSrc = src.startsWith("http")
+    ? src
+    : `https://raw.githubusercontent.com/rakeshkanna-rk/database/refs/heads/main/new_portfolio/${src.replace(/^\//, '')}`;
+
   return (
     <img
-      src={src}
+      src={fullSrc}
       alt=""
-      className="w-full h-full object-contain grayscale invert opacity-80"
+      className="w-full h-full object-contain"
       onError={() => setError(true)}
     />
   );

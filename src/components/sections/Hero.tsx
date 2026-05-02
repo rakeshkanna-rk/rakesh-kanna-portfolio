@@ -26,8 +26,8 @@ export function Hero() {
         className="absolute inset-0 z-0"
       >
         <img 
-          src="/herobackground.png" 
-          className="w-full h-full object-cover object-center opacity-40 md:opacity-50" 
+          src="/herobackground.avif" 
+          className="w-full h-full object-fit object-center opacity-40 md:opacity-50" 
           alt="Background Glow"
           referrerPolicy="no-referrer"
         />

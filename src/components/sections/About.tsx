@@ -2,11 +2,9 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform, MotionValue } from "motion/react";
 import { SectionHeader } from "../ui/SectionHeader";
 import { BlurText } from "../ui/BlurTextProps";
+import { aboutText } from "../../data/about";
 
 export function About() {
-  const para1 = `I design digital experiences with a strong focus on clarity, visual consistency, and how things feel in use. My work is rooted in UI/UX and brand thinking, where every interface is shaped to be simple, structured, and easy to navigate. I pay close attention to spacing, typography, and visual rhythm to make sure each product feels cohesive from end to end.
-
-  I work closely with early-stage ideas and growing products, shaping both the interface and the brand as they evolve. From defining visual direction to building scalable design systems, I focus on creating work that holds together across screens and touchpoints. Currently, I lead design and brand experience at Mergex, where I handle the overall direction of product design and ensure consistency across everything we build.`;
 
   return (
     <section className="relative pt-28 pb-20 px-4 md:px-12 z-10 overflow-visible">
@@ -40,7 +38,7 @@ export function About() {
 
           <div className="">
             <BlurText
-              text={para1}
+              text={aboutText}
               delay={40}
               animateBy="words"
               direction="top"
