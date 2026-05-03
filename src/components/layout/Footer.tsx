@@ -228,8 +228,7 @@ export function Footer() {
 
             <motion.div
               whileHover={{ scale: 1.02 }}
-              className="p-8 rounded-
-              [2rem] bg-white/3 border border-white/10 backdrop-blur-xl relative overflow-hidden group cursor-default"
+              className="p-8 rounded-4xl bg-white/3 border border-white/10 backdrop-blur-xl relative overflow-hidden group cursor-default"
             >
               <span className="text-[10px] font-roboto tracking-widest text-white/30 uppercase block mb-6">
                 CURRENT STATUS
