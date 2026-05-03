@@ -145,7 +145,7 @@ export function Toolkit() {
                         borderColor: "rgba(82, 39, 255, 0.5)",
                         boxShadow: "0 0 20px rgba(82, 39, 255, 0.2)",
                       }}
-                      className="backdrop-blur-md px-5 py-2.5 rounded-full border border-white/10 bg-white/5 text-white/60 text-xs md:text-sm font-roboto font-medium cursor-default select-none transition-all duration-300 hover:text-white"
+                      className="cursor-pointer backdrop-blur-md px-5 py-2.5 rounded-full border border-white/10 bg-white/5 text-white/60 text-xs md:text-sm font-roboto font-medium select-none transition-all duration-300 hover:text-white"
                     >
                       {skill}
                     </motion.span>
