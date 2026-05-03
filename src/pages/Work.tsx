@@ -1,8 +1,15 @@
+import { useEffect } from "react";
 import { Crafted } from "../components/sections/Crafted";
 import { Posters } from "../components/sections/Posters";
 import { Footer } from "../components/layout/Footer";
 
 export function Work() {
+  useEffect(() => {
+    document.title = "Work — Rakesh Kanna";
+    return () => {
+      document.title = "Rakesh Kanna — Product Designer & Developer";
+    };
+  }, []);
   return (
     <div className="min-h-screen flex flex-col">
       <img className="w-full px-1 py-2 md:px-10 opacity-50" src="./works-header.svg" alt="work-header" />

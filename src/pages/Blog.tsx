@@ -67,6 +67,17 @@ export function Blog() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (activePost) {
+      document.title = `${activePost.title} — Blog`;
+    } else {
+      document.title = "Blog — Rakesh Kanna";
+    }
+    return () => {
+      document.title = "Rakesh Kanna — Product Designer & Developer";
+    };
+  }, [activePost]);
+
+  useEffect(() => {
     async function fetchPosts() {
       try {
         const res = await fetch(
@@ -190,7 +201,7 @@ export function Blog() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex justify-center items-end md:items-center bg-black/80 backdrop-blur-sm md:p-6"
+            className="fixed inset-0 z-100 flex justify-center items-end md:items-center bg-black/80 backdrop-blur-sm md:p-6"
             onClick={() => setActivePost(null)}
           >
             <motion.div

@@ -103,14 +103,14 @@ export function Crafted({ isWorkPage = false, limit }: CraftedProps) {
                   
                   {/* Mobile Image */}
                   <img 
-                    src={`https://raw.githubusercontent.com/rakeshkanna-rk/database/refs/heads/main/new_portfolio/${project.image.replace(/\.(\w+)$/, '_mobi.$1').replace(/^\//, '')}`} 
+                    src={`https://rakeshkanna-rk.github.io/database/new_portfolio/${(Array.isArray(project.image) ? project.image[0] : project.image).replace(/\.(\w+)$/, '_mobi.$1').replace(/^\//, '')}`} 
                     alt={project.title}
                     className="relative h-auto w-full object-contain block md:hidden"
                     referrerPolicy="no-referrer"
                   />
                   {/* Desktop Image */}
                   <img 
-                    src={`https://raw.githubusercontent.com/rakeshkanna-rk/database/refs/heads/main/new_portfolio/${project.image.replace(/^\//, '')}`} 
+                    src={`https://rakeshkanna-rk.github.io/database/new_portfolio/${(Array.isArray(project.image) ? project.image[0] : project.image).replace(/^\//, '')}`} 
                     alt={project.title}
                     className="relative h-auto w-full object-contain hidden md:block"
                     referrerPolicy="no-referrer"

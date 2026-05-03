@@ -13,6 +13,7 @@ import { Work } from "./pages/Work";
 import { Blog } from "./pages/Blog";
 import { Links } from "./pages/Links";
 import { ProjectView } from "./pages/ProjectView";
+import { NotFound } from "./pages/NotFound";
 
 function ScrollToHash() {
   const { pathname, hash } = useLocation();
@@ -61,6 +62,7 @@ export default function App() {
           <Route path="/work/view-project/:id" element={<ProjectView />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/links" element={<Links />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </ClickSpark>
     </div>

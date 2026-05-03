@@ -1,9 +1,9 @@
-import React from 'react';
-import { motion } from 'motion/react';
-import { SectionHeader } from '../ui/SectionHeader';
-import { TextReveal } from '../ui/TextReveal';
-import { useNavigate } from 'react-router-dom';
-import { posters } from '../../data/work';
+import React from "react";
+import { motion } from "motion/react";
+import { SectionHeader } from "../ui/SectionHeader";
+import { TextReveal } from "../ui/TextReveal";
+import { useNavigate } from "react-router-dom";
+import { posters } from "../../data/work";
 
 interface PostersProps {
   isWorkPage?: boolean;
@@ -17,7 +17,7 @@ export function Posters({ isWorkPage = false, limit }: PostersProps) {
   return (
     <section className="py-20 md:py-32 px-3 md:px-20 bg-bg relative z-10 overflow-hidden">
       <SectionHeader title="Design & Posters" className="mb-12 md:mb-20" />
-      
+
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
         {displayedPosters.map((poster, index) => (
           <motion.div
@@ -25,28 +25,37 @@ export function Posters({ isWorkPage = false, limit }: PostersProps) {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
-            transition={{ 
+            transition={{
               duration: 0.8,
               ease: [0.19, 1, 0.22, 1],
-              delay: index * 0.1
+              delay: index * 0.1,
             }}
             whileHover={{ y: -10 }}
             onClick={() => navigate(`/work/view-project/${poster.id}`)}
             className="group relative cursor-pointer"
           >
-            <motion.div 
+            <motion.div
               transition={{ duration: 0.4 }}
               className="relative aspect-[3/4.2] overflow-hidden rounded-[10px] bg-white/5 border border-white/10 hover:border-[#33007E] hover:border-2"
             >
-              <motion.img 
-                src={poster.image} 
+              <motion.img
+                src={
+                  (Array.isArray(poster.image)
+                    ? poster.image[0]
+                    : poster.image
+                  ).startsWith("http")
+                    ? Array.isArray(poster.image)
+                      ? poster.image[0]
+                      : poster.image
+                    : `https://raw.githubusercontent.com/rakeshkanna-rk/database/refs/heads/main/new_portfolio/${(Array.isArray(poster.image) ? poster.image[0] : poster.image).replace(/^\//, "")}`
+                }
                 alt={poster.title}
                 transition={{ duration: 0.8 }}
                 className="h-full w-full object-cover pointer-events-none"
                 referrerPolicy="no-referrer"
               />
             </motion.div>
-            
+
             {/* Reveal text on hover/active */}
             <div className="mt-6 flex justify-between items-start px-1">
               <div className="overflow-hidden">
@@ -67,15 +76,18 @@ export function Posters({ isWorkPage = false, limit }: PostersProps) {
           </motion.div>
         ))}
       </div>
-      
+
       {!isWorkPage && (
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="mt-24 flex justify-center"
         >
-          <button onClick={() => window.location.href = "/work"} className="cursor-pointer group relative px-10 py-4 overflow-hidden rounded-full border border-white/10 bg-white/5 backdrop-blur-md transition-all duration-500 hover:border-accent/50 hover:bg-white/10">
+          <button
+            onClick={() => (window.location.href = "/work")}
+            className="cursor-pointer group relative px-10 py-4 overflow-hidden rounded-full border border-white/10 bg-white/5 backdrop-blur-md transition-all duration-500 hover:border-accent/50 hover:bg-white/10"
+          >
             <span className="relative z-10 text-white/70 font-sugopro text-sm tracking-[0.2em] group-hover:text-white transition-colors duration-300">
               EXPLORE FULL GALLERY
             </span>

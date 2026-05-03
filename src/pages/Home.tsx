@@ -5,6 +5,7 @@ import { About } from "../components/sections/About";
 import { Marquee } from "../components/sections/Marquee";
 import { Toolkit } from "../components/sections/Toolkit";
 import { Journey } from "../components/sections/Journey";
+import { CTA } from "../components/sections/CTA";
 import { Footer } from "../components/layout/Footer";
 import { DecorativeLines } from "../components/ui/DecorativeLines";
 
@@ -38,6 +39,7 @@ export function Home() {
       <div id="journey" className="relative">
         <Journey />
       </div>
+      <CTA />
       <Footer />
     </>
   );
