@@ -74,9 +74,9 @@ export function ProjectView() {
             href={project.url} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 text-accent hover:bg-accent hover:text-white transition-all cursor-pointer font-sugopro text-sm tracking-widest"
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 text-white/80 hover:bg-accent hover:text-white transition-all cursor-pointer font-sugopro text-sm tracking-widest"
           >
-            {project.type === "poster" ? "VIEW PROJECT" : "VISIT LIVE"}
+            {(project.type === "poster" || project.type === "carousel") ? "VIEW PROJECT" : "VISIT LIVE"}
             <ExternalLink className="w-4 h-4" />
           </a>
         ) : (

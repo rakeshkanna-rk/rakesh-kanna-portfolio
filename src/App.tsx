@@ -22,25 +22,38 @@ function ScrollToHash() {
   const lenis = useLenis();
 
   useEffect(() => {
-    if (!lenis) return;
+    if (!lenis || !hash) return;
     
-    if (hash) {
-      // Delay to ensure DOM and page components are fully rendered
-      setTimeout(() => {
-        const element = document.querySelector(hash) as HTMLElement;
-        if (element) {
-          lenis.scrollTo(element, { offset: -50, duration: 1.2 });
-        } else {
-          // Retry once more if element not yet in DOM
-          setTimeout(() => {
-            const el = document.querySelector(hash) as HTMLElement;
-            if (el) lenis.scrollTo(el, { offset: -50, duration: 1.2 });
-          }, 400);
-        }
-      }, 300);
-    } else {
-      lenis.scrollTo(0, { immediate: true });
-    }
+    // Function to perform the scroll
+    const performScroll = (retryCount = 0) => {
+      const element = document.querySelector(hash) as HTMLElement;
+      if (element) {
+        // Wait a bit more on the first try to ensure layout is ready
+        const delay = retryCount === 0 ? 100 : 0;
+        
+        setTimeout(() => {
+          lenis.scrollTo(element, { 
+            offset: -50, 
+            duration: 1.5,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) // Smooth expo out
+          });
+        }, delay);
+      } else if (retryCount < 5) {
+        // Retry if element not found yet
+        setTimeout(() => performScroll(retryCount + 1), 200);
+      }
+    };
+
+    // Initial trigger after a safe delay for components to mount
+    const timeoutId = setTimeout(() => performScroll(), 600);
+    
+    return () => clearTimeout(timeoutId);
+  }, [pathname, hash, lenis]);
+
+  // Handle normal top-of-page scroll when no hash
+  useEffect(() => {
+    if (!lenis || hash) return;
+    lenis.scrollTo(0, { immediate: true });
   }, [pathname, hash, lenis]);
 
   return null;

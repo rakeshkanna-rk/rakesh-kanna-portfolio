@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { Link } from "react-router-dom";
 import { ArrowRight, Mail } from "lucide-react";
 
 export function CTA() {
@@ -75,12 +76,12 @@ export function CTA() {
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
 
-            <a 
-              href="/links"
+            <Link 
+              to="/links"
               className="px-8 py-4 bg-white/5 border border-white/10 text-white/60 rounded-full font-sugopro tracking-widest text-sm hover:bg-white/10 hover:text-white transition-all duration-500"
             >
               SOCIAL LINKS
-            </a>
+            </Link>
           </motion.div>
 
           <motion.p

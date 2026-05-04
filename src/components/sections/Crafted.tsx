@@ -123,8 +123,14 @@ export function Crafted({ isWorkPage = false, limit }: CraftedProps) {
             
             {/* CTA Card - Only show in Home */}
             {!isWorkPage && (
-              <div className={`h-[30vh] md:h-[60vh] ${isMobile ? 'w-full sticky top-[20vh]' : 'w-[400px] shrink-0'} border border-dashed border-white/20 rounded-[40px] flex flex-col items-center justify-center text-center p-8 bg-bg/80 backdrop-blur-sm`}>
-                 <h4 className="text-xl md:text-3xl font-agraham text-white/40 mb-6 italic">Ready for the next forge?</h4>
+              <div className={`group relative h-auto ${isMobile ? 'w-[98vw] sticky top-[15vh]' : 'w-[70vw] shrink-0'} border border-dashed border-white/20 rounded-[20px] md:rounded-[30px] flex flex-col items-center justify-center text-center p-12 bg-white/2 backdrop-blur-sm aspect-[16/9] md:aspect-auto md:h-[70vh]`}>
+                 <motion.h4 
+                   initial={{ opacity: 0, y: 10 }}
+                   whileInView={{ opacity: 1, y: 0 }}
+                   className="text-lg md:text-2xl font-agraham text-white/40 italic mb-8"
+                 >
+                   Ready for the next forge?
+                 </motion.h4>
               </div>
             )}
           </motion.div>

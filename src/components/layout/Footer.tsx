@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { Instagram, Linkedin, Github, Mail, ArrowUpRight } from "lucide-react";
 
 const navLinks = [
@@ -187,15 +188,15 @@ export function Footer() {
             <ul className="flex flex-col gap-6">
               {navLinks.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.url}
+                  <Link
+                    to={link.url}
                     className="group flex items-center gap-2 font-Advercase text-2xl text-white/40 hover:text-white transition-all italic uppercase tracking-widest"
                   >
                     <span className="opacity-0 group-hover:opacity-100 transition-opacity text-accent">
                       /
                     </span>
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

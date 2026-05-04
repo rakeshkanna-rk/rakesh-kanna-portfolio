@@ -43,21 +43,30 @@ export function LoadingScreen({ onFinished }: { onFinished: () => void; key?: st
       transition={{ duration: 0.6, ease: "easeInOut" }}
       className="fixed inset-0 z-9999 bg-bg flex items-center justify-center overflow-hidden"
     >
-      <motion.h1
-        animate={{ 
-          opacity: isLoaded ? 0 : [0.5, 0.75, 1]
-        }}
-        transition={{ 
-          duration: 1.5,
-          ease: "easeInOut",
-          times: [0, 0.5, 1],
-          repeat: Infinity,
-          repeatType: "reverse"
-        }}
-        className="text-white font-Advercase text-4xl md:text-7xl tracking-[0.2em] italic select-none pointer-events-none"
-      >
-        RAKESH KANNA
-      </motion.h1>
+      <div className="flex font-sugopro text-4xl md:text-9xl tracking-widest select-none pointer-events-none">
+        <motion.span
+          animate={{ 
+            opacity: isLoaded ? 0 : 1
+          }}
+          className="text-white"
+        >
+          R
+        </motion.span>
+        <motion.span
+          animate={{ 
+            opacity: isLoaded ? 0 : [0.5, 1]
+          }}
+          transition={{ 
+            duration: 2,
+            ease: "easeInOut",
+            repeat: Infinity,
+            repeatType: "reverse"
+          }}
+          className="text-white"
+        >
+          AKESH KANNA
+        </motion.span>
+      </div>
 
       {/* Subtle Background Mesh/Glow for depth */}
       <div className="absolute inset-0 pointer-events-none z-[-1]">
