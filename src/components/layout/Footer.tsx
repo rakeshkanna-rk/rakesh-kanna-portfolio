@@ -248,19 +248,11 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-8 text-[9px] font-roboto tracking-[0.3em] text-white/10 uppercase">
+        <div className="hover:text-white cursor-default pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-center gap-8 text-[9px] font-roboto tracking-[0.3em] text-white/10 uppercase">
           <div className="flex items-center gap-2">
             <span>© 2026 RAKESH KANNA</span>
             <span className="w-1 h-1 rounded-full bg-white/10" />
             <span>VISUAL ARTIST & DEV</span>
-          </div>
-          <div className="flex gap-12">
-            <a href="#" className="hover:text-white transition-colors">
-              EST. 2024
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
-              TERMS OF USE
-            </a>
           </div>
         </div>
       </div>

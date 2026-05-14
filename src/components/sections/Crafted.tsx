@@ -59,7 +59,7 @@ export function Crafted({ isWorkPage = false, limit }: CraftedProps) {
     >
       <div className={`${isWorkPage || isMobile ? 'relative' : 'sticky top-0 h-screen flex flex-col justify-center'} p-0 md:p-[30px] pt-12 md:pt-0`}>
         <div className="w-full max-w-7xl mx-auto">
-          <SectionHeader title="Websites & UI UX" className="mb-8 md:mb-12 px-6 md:px-0" />
+          <SectionHeader title="Dive Into My Work" className="mb-8 md:mb-12 px-6 md:px-0" />
           
           <motion.div 
             style={{ x: isWorkPage || isMobile ? 0 : x }} 

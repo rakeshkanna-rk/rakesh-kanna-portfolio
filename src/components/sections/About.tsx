@@ -36,7 +36,7 @@ export function About() {
             </h4>
           </motion.div>
 
-          <div className="">
+          <div className="whitespace-pre-line">
             <BlurText
               text={aboutText}
               delay={40}
