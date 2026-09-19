@@ -39,11 +39,11 @@ export function Crafted({ isWorkPage = false, limit }: CraftedProps) {
   const isMobile = windowWidth < 768;
   const cardWidth = isMobile ? windowWidth * 0.95 : windowWidth * 0.7;
   const gap = 48; // 3rem (gap-12)
-  const totalMove = (projects.length - 1) * (cardWidth + gap);
+  const displayedProjects = limit ? projects.slice(0, limit) : projects;
+  const numItems = isWorkPage ? displayedProjects.length : displayedProjects.length + 1;
+  const totalMove = (numItems - 1) * (cardWidth + gap);
 
   const x = useTransform(scrollYProgress, [0, 1], [0, -totalMove]);
-
-  const displayedProjects = limit ? projects.slice(0, limit) : projects;
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const { clientX, clientY } = e;
@@ -55,18 +55,18 @@ export function Crafted({ isWorkPage = false, limit }: CraftedProps) {
   return (
     <section 
       ref={targetRef} 
-      className={`relative mt-24 ${isWorkPage ? 'h-auto pb-20' : (isMobile ? 'h-auto pb-20' : 'h-[600vh]')}`}
+      className={`relative z-10 ${isWorkPage ? 'py-20 md:py-32 px-3 md:px-20 bg-bg' : (isMobile ? 'py-20 px-3' : 'h-[600vh]')}`}
     >
-      <div className={`${isWorkPage || isMobile ? 'relative' : 'sticky top-0 h-screen flex flex-col justify-center'} p-0 md:p-[30px] pt-12 md:pt-0`}>
-        <div className="w-full max-w-7xl mx-auto">
-          <SectionHeader title="Dive Into My Work" className="mb-8 md:mb-12 px-6 md:px-0" />
+      <div className={`${isWorkPage || isMobile ? 'relative' : 'sticky top-0 h-screen flex flex-col justify-center px-3 md:px-20'}`}>
+        <div>
+          <SectionHeader title="Dive Into My Work" className="mb-8 md:mb-20" />
           
           <motion.div 
             style={{ x: isWorkPage || isMobile ? 0 : x }} 
             className={isWorkPage 
-              ? 'grid grid-cols-1 md:grid-cols-2 gap-8 px-4 md:px-0' 
+              ? 'grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10' 
               : `flex ${isMobile 
-                  ? 'flex-col gap-12 px-1 pb-20' 
+                  ? 'flex-col gap-12 pb-20' 
                   : 'gap-12 items-center'
                 }`}
           >

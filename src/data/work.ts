@@ -15,3 +15,4 @@ try {
 
 export const projects = data.projects;
 export const posters = data.posters;
+export const vibeDevelops = data.vibeDevelops || [];

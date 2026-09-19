@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Crafted } from "../components/sections/Crafted";
+import { VibeDevelops } from "../components/sections/VibeDevelops";
 import { Posters } from "../components/sections/Posters";
 import { Footer } from "../components/layout/Footer";
 
@@ -16,6 +17,7 @@ export function Work() {
       <div className="flex-1">
         <Crafted isWorkPage={true} />
         <Posters isWorkPage={true} />
+        <VibeDevelops isWorkPage={true} />
       </div>
       <Footer />
     </div>

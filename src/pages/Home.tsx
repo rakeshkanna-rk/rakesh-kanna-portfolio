@@ -4,6 +4,7 @@ import { Posters } from "../components/sections/Posters";
 import { About } from "../components/sections/About";
 import { Marquee } from "../components/sections/Marquee";
 import { Toolkit } from "../components/sections/Toolkit";
+import { VibeDevelops } from "../components/sections/VibeDevelops";
 import { Journey } from "../components/sections/Journey";
 import { CTA } from "../components/sections/CTA";
 import { Footer } from "../components/layout/Footer";
@@ -21,6 +22,9 @@ export function Home() {
       </div>
       <div id="posters">
         <Posters limit={6} />
+      </div>
+      <div id="vibe-develops">
+        <VibeDevelops />
       </div>
       <div id="about">
         <About />

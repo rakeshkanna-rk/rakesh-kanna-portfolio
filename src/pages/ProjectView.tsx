@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { ArrowLeft, ExternalLink } from "lucide-react";
-import { projects, posters } from "../data/work";
+import { projects, posters, vibeDevelops } from "../data/work";
 
 type ProjectItem = {
   id: string;
@@ -11,9 +11,10 @@ type ProjectItem = {
   type: string;
   url?: string;
   category?: string;
+  showOnHome?: boolean;
 };
 
-const allProjects: ProjectItem[] = [...projects, ...posters];
+const allProjects: ProjectItem[] = [...projects, ...posters, ...vibeDevelops];
 
 export function ProjectView() {
   const { id } = useParams();
