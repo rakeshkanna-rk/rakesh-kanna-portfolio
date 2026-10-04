@@ -10,7 +10,7 @@ export function About() {
     <section className="relative pt-28 pb-20 px-4 md:px-12 z-10 overflow-visible">
       {/* Grid Background at the top of About */}
       <div
-        className="absolute top-0 left-0 right-0 h-[800px] pointer-events-none z-0"
+        className="absolute top-0 left-0 right-0 h-200 pointer-events-none z-0"
         style={{
           backgroundImage: 'url("/gird-background.svg")',
           backgroundSize: "100% auto",

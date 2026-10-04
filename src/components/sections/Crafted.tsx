@@ -139,7 +139,7 @@ export function Crafted({ isWorkPage = false, limit }: CraftedProps) {
             <motion.button 
               whileHover={{ x: 10 }}
               onClick={() => window.location.href = "/work"}
-              className="cursor-pointer flex items-start justify-start gap-2 text-xl font-pearl text-white/70 hover:text-white mt-8 md:mt-12 px-[30px] md:px-[10px] w-fit leading-normal"
+              className="cursor-pointer flex items-start justify-start gap-2 text-xl font-pearl text-white/70 hover:text-white mt-8 md:mt-12 px-7.5 md:px-2.5 w-fit leading-normal"
             >
               View my forge <img src="/icons/arrow-right.svg" className="w-auto h-6" alt="arrow"/>
             </motion.button>

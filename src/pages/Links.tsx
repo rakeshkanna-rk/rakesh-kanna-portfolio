@@ -89,7 +89,7 @@ export function Links() {
                 rel="noopener noreferrer"
                 {...fadeInUp}
                 transition={{ delay: index * 0.05 }}
-                className="group relative flex items-center p-5 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md transition-all duration-300 hover:bg-white/8 hover:translate-y-[-2px] hover:shadow-[0_10px_30px_rgba(0,0,0,0.3)]"
+                className="group relative flex items-center p-5 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md transition-all duration-300 hover:bg-white/8 hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(0,0,0,0.3)]"
                 style={{
                   '--hover-color': link.color
                 } as any}

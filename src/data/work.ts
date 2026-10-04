@@ -1,6 +1,6 @@
 const rawUrl = "https://raw.githubusercontent.com/rakeshkanna-rk/database/main/new_portfolio/work.json";
 
-let data = { projects: [], posters: [] };
+let data: { projects: any[]; posters: any[]; vibeDevelops?: any[] } = { projects: [], posters: [], vibeDevelops: [] };
 
 try {
   const response = await fetch(rawUrl);

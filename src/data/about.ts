@@ -1,6 +1,11 @@
 const rawUrl = "https://raw.githubusercontent.com/rakeshkanna-rk/database/main/new_portfolio/about.json";
 
-let data = { aboutText: "", experiences: [] };
+let data: {
+  aboutText: string;
+  experiences: any[];
+  education: any[];
+  certifications: any[];
+} = { aboutText: "", experiences: [], education: [], certifications: [] };
 
 try {
   const response = await fetch(rawUrl);
@@ -15,3 +20,5 @@ try {
 
 export const aboutText = data.aboutText;
 export const experiences = data.experiences;
+export const education = data.education ?? [];
+export const certifications = data.certifications ?? [];

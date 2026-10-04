@@ -88,7 +88,7 @@ export function ProjectView() {
             <ExternalLink className="w-4 h-4" />
           </a>
         ) : (
-          <div className="w-[100px]"></div> /* Placeholder for balance */
+          <div className="w-25"></div> /* Placeholder for balance */
         )}
       </div>
 

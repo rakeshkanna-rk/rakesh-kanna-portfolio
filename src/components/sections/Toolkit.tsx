@@ -4,15 +4,22 @@ import { SectionHeader } from "../ui/SectionHeader";
 import { DotGrid } from "../ui/DotGrid";
 import { TextReveal } from "../ui/TextReveal";
 import { tools, skills } from "../../data/toolkit";
+import { Brands } from "./Brands";
 
 /* ─── Component ──────────────────────────────────────────── */
 export function Toolkit() {
   return (
     <section className="relative py-24 px-4 md:px-12 overflow-hidden my-20">
-      <div className="absolute inset-x-0 top-0 h-10 bg-linear-to-b from-bg to-transparent z-10" />
-          <div className="absolute inset-x-0 bottom-0 h-10 bg-linear-to-t from-bg to-transparent z-10" />
-          <div className="absolute inset-y-0 left-0 w-10 bg-linear-to-r from-bg to-transparent z-10" />
-          <div className="absolute inset-y-0 right-0 w-10 bg-linear-to-l from-bg to-transparent z-10" />
+      <div className="absolute inset-x-0 top-0 h-10 bg-linear-to-b from-bg to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-10 bg-linear-to-t from-bg to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 left-0 w-10 bg-linear-to-r from-bg to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-10 bg-linear-to-l from-bg to-transparent z-10 pointer-events-none" />
+
+      {/* Atmospheric ambient glow orbs behind the dots and content to give backdrop-blur rich color & contrast to diffuse */}
+      <div className="absolute top-12 left-1/2 -translate-x-1/2 w-175 h-87.5 bg-accent/35 rounded-full blur-[100px] pointer-events-none z-0" />
+      <div className="absolute top-1/2 right-10 w-137.5 h-87.5 bg-purple-600/25 rounded-full blur-[120px] pointer-events-none z-0" />
+      <div className="absolute bottom-16 left-12 w-150 h-80 bg-indigo-600/25 rounded-full blur-[110px] pointer-events-none z-0" />
+
       {/* DotGrid background — absolutely fills the section */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <DotGrid
@@ -66,7 +73,7 @@ export function Toolkit() {
                 }}
                 className="absolute bottom-full mb-3 pointer-events-none z-30 whitespace-nowrap"
               >
-                <div className="bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/20">
+                <div className="glass-pill px-3 py-1.5 rounded-lg">
                   <span className="text-white font-roboto text-xs font-semibold tracking-wide">
                     {tool.name}
                   </span>
@@ -78,11 +85,11 @@ export function Toolkit() {
                 variants={{
                   hover: {
                     scale: 1.08,
-                    boxShadow: "0 0 30px rgba(82,39,255,0.5)",
+                    boxShadow: "0 0 30px rgba(85,19,185,0.6)",
                     transition: { type: "spring", stiffness: 300, damping: 20 },
                   },
                 }}
-                className="backdrop-blur-xs w-14 h-14 md:w-16 md:h-16 bg-white/5 border border-white/10 group-hover:border-accent/40 rounded-2xl flex items-center justify-center p-3 transition-colors duration-300"
+                className="w-14 h-14 md:w-16 md:h-16 glass rounded-2xl flex items-center justify-center p-3 transition-colors duration-300 group-hover:border-accent/60"
               >
                 <img
                   src={tool.img.startsWith("http") ? tool.img : `https://raw.githubusercontent.com/rakeshkanna-rk/database/refs/heads/main/new_portfolio/${tool.img.replace(/^\//, '')}`}
@@ -92,7 +99,7 @@ export function Toolkit() {
                     // fallback: show first 2 letters if icon missing
                     (e.currentTarget as HTMLImageElement).style.display = "none";
                     const span = document.createElement("span");
-                    span.className = "text-white/60 text-xs font-bold font-roboto";
+                    span.className="text-white/60 text-xs font-bold font-roboto";
                     span.textContent = tool.name.slice(0, 2).toUpperCase();
                     e.currentTarget.parentElement!.appendChild(span);
                   }}
@@ -141,11 +148,11 @@ export function Toolkit() {
                       }}
                       whileHover={{ 
                         scale: 1.05, 
-                        backgroundColor: "rgba(255, 255, 255, 0.08)",
-                        borderColor: "rgba(82, 39, 255, 0.5)",
-                        boxShadow: "0 0 20px rgba(82, 39, 255, 0.2)",
+                        backgroundColor: "rgba(255, 255, 255, 0.14)",
+                        borderColor: "rgba(85, 19, 185, 0.6)",
+                        boxShadow: "0 0 20px rgba(85, 19, 185, 0.35)",
                       }}
-                      className="cursor-pointer backdrop-blur-md px-5 py-2.5 rounded-full border border-white/10 bg-white/5 text-white/60 text-xs md:text-sm font-roboto font-medium select-none transition-all duration-300 hover:text-white"
+                      className="cursor-pointer px-5 py-2.5 rounded-full glass-pill text-white/75 text-xs md:text-sm font-roboto font-medium select-none transition-all duration-300 hover:text-white"
                     >
                       {skill}
                     </motion.span>
@@ -155,6 +162,9 @@ export function Toolkit() {
             ))}
           </div>
         </div>
+
+        {/* ── BRANDS I HAVE WORKED WITH ─────────────────────── */}
+        <Brands />
 
       </div>
     </section>
